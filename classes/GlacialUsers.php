@@ -1,6 +1,5 @@
 <?php
 
-
 namespace GlacialThemeSetup;
 
 
@@ -8,9 +7,14 @@ class GlacialUsers {
 
 	var $users;
 
+	function __construct() {
+		$this->glacialUsers();
+		$this->addUsers();
+	}
+
 	function glacialUsers() {
 
-		$this->$users = array(
+		$this->users = array(
 			array(
 				'user_login' => 'glacialcm',
 				'user_pass'  => 'MuFn88B#qBXD',
@@ -56,15 +60,14 @@ class GlacialUsers {
 
 		);
 
-		function addUsers( $users ) {
-
-			foreach ( $users as $user ) {
-				if ( ! get_user_by( 'first_name', $user['first_name'] ) ) {
-					wp_insert_user( $user );
-				}
-			}
-		};
-
 	}
 
+	function addUsers() {
+		foreach ( $this->users as $user ) {
+			if ( !get_user_by( 'first_name', $user['first_name'] ) ) {
+				wp_insert_user( $user );
+
+			}
+		}
+	}
 }
